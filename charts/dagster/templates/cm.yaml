@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dagster-workspace
+data:
+  workspace.yaml: |
+    load_from:
+      servers:
+        - host: "nw-bi-dagster-main"
+          name: "MAIN"
+          port: 3030

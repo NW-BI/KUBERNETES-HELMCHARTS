@@ -1,0 +1,21 @@
+dagster:
+  dagsterWebserver:
+    pathPrefix: /dagster
+    readinessProbe:
+      httpGet:
+        path: /dagster/server_info
+
+    workspace:
+      enabled: true
+ 
+  dagsterDaemon:
+    runRetries:
+      enabled: false
+    sensors:
+      numWorkers: 3
+
+    schedules:
+      numWorkers: 6
+  dagster-user-deployments:
+    enabled: true
+    enableSubchart: false

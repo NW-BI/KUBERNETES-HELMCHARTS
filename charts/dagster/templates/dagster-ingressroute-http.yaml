@@ -1,0 +1,16 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: {{ .Release.Name }}-ingress-route-http
+spec:
+  entryPoints:
+    - web
+  routes:
+  - kind: Rule
+    match: Host(`{{ .Values.dagsterHost }}`)
+    priority: 10
+    middlewares:
+      - name: redirect-https
+    services:
+    - name: {{ .Release.Name }}-webserver
+      port: 80
