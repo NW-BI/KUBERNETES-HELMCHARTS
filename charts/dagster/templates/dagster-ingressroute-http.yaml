@@ -10,8 +10,8 @@ spec:
     match: Host(`{{ .Values.parameters.dagsterHost }}`)
     priority: 10
     middlewares:
-      - name: redirect-https
       - name: test-ipallowlist
+      - name: redirect-https
     services:
     - name: {{ .Release.Name }}-dagster-webserver
       port: 80

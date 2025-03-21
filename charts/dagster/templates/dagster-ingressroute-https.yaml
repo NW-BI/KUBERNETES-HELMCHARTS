@@ -9,8 +9,8 @@ spec:
   - kind: Rule
     match: Host(`{{ .Values.parameters.dagsterHost }}`)
     middlewares:
-      - name: {{ .Release.Name }}-basic-auth
       - name: test-ipallowlist
+      - name: {{ .Release.Name }}-basic-auth
     priority: 10
     services:
     - name: {{ .Release.Name }}-dagster-webserver
