@@ -12,6 +12,6 @@ spec:
       - name: {{ .Release.Name }}-basic-auth
     priority: 10
     services:
-    - name: {{ .Release.Name }}-webserver
+    - name: {{ .Release.Name }}-dagster-webserver
       port: 80
 

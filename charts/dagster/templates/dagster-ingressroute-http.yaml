@@ -12,5 +12,5 @@ spec:
     middlewares:
       - name: redirect-https
     services:
-    - name: {{ .Release.Name }}-webserver
+    - name: {{ .Release.Name }}-dagster-webserver
       port: 80
