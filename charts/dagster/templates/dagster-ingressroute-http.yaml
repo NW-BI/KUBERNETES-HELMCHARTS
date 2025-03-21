@@ -11,6 +11,7 @@ spec:
     priority: 10
     middlewares:
       - name: redirect-https
+      - name: test-ipallowlist
     services:
     - name: {{ .Release.Name }}-dagster-webserver
       port: 80
