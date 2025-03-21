@@ -7,7 +7,7 @@ spec:
     - web
   routes:
   - kind: Rule
-    match: Host(`{{ .Values.dagsterHost }}`)
+    match: Host(`{{ .Values.parameters.dagsterHost }}`)
     priority: 10
     middlewares:
       - name: redirect-https

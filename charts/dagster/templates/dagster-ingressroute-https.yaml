@@ -7,7 +7,7 @@ spec:
     - websecure
   routes:
   - kind: Rule
-    match: Host(`{{ .Values.dagsterHost }}`)
+    match: Host(`{{ .Values.parameters.dagsterHost }}`)
     middlewares:
       - name: {{ .Release.Name }}-basic-auth
     priority: 10
