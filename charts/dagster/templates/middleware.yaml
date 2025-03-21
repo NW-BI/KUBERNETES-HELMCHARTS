@@ -14,3 +14,14 @@ metadata:
 spec:
   basicAuth:
     secret: {{ .Release.Name }}-basic-auth
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: test-ipallowlist
+spec:
+  ipAllowList:
+    sourceRange:
+      - 212.8.208.204/32
+      - 178.208.118.42/32
+      - 212.8.208.194/32
