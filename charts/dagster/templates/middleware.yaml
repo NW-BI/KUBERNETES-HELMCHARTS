@@ -20,8 +20,8 @@ kind: Middleware
 metadata:
   name: test-ipallowlist
 spec:
-  ipAllowList:
+  ipWhiteList:
     sourceRange:
-      - "212.8.208.204/32"
-      - "178.208.118.42/32"
-      - "212.8.208.194/32"
+      - 212.8.208.204/32
+      - 178.208.118.42/32
+      - 212.8.208.194/32
