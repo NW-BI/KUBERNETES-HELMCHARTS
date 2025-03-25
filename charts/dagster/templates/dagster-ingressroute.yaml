@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-dg-ws
+  annotations:
+    kubernetes.io/tls-acme: "true"
+    traefik.ingress.kubernetes.io/router.middlewares: test-ipallowlist@kubernatescrd,{{ .Release.Name }}-basic-auth@kubernatescrd
+spec:
+  rules:
+  - host: {{ .Values.parameters.dagsterHost }}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ .Release.Name }}-dagster-webserver
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - {{ .Values.parameters.dagsterHost }}
+    secretName: {{ .Release.Name }}-tls
+
