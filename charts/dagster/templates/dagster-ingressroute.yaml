@@ -4,7 +4,7 @@ metadata:
   name: {{ .Release.Name }}-dg-ws
   annotations:
     kubernetes.io/tls-acme: "true"
-    traefik.ingress.kubernetes.io/router.middlewares: test-ipallowlist@kubernatescrd,{{ .Release.Name }}-basic-auth@kubernatescrd
+    traefik.ingress.kubernetes.io/router.middlewares: {{ .Release.Name }}-basic-auth@kubernatescrd
 spec:
   rules:
   - host: {{ .Values.parameters.dagsterHost }}
