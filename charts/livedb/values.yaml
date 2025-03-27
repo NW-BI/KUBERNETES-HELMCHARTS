@@ -1,0 +1,25 @@
+liveDashboard:
+  deployment:
+    container:
+      name: live-dashboard
+      image: ghcr.io/nw-bi/live-dashboard
+      tag: latest
+      imagePullPolicy: Always
+      ports:
+        containerPort: 8000
+      envFrom: []
+parameter:
+  livedbhost: ~
+  livedbnamespace: ~
+middleware:
+  names:
+    - ipallowlist@kubernetescrd
+    - basic-auth@kubernetescrd
+
+secrets:
+  snowflake_user: ~
+  snowflake_pw: ~
+  snowflake_account: ~
+  dockerpullsecret: ~
+  basicAuthFile:
+    htpasswd: ~

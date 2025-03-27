@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-live-db-ws
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    kubernetes.io/tls-acme: "true"
+    traefik.ingress.kubernetes.io/router.middlewares: {{ range $index, $element := .Values.middleware.names }}{{ if $index }},{{ end }}{{ $.Release.Name }}-{{ $element }}{{ end }}
+spec:
+  rules:
+  - host: {{ .Values.parameter.livedbhost }}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: live-dashboard
+            port:
+              number: 8000
+  tls:
+  - hosts:
+    - {{ .Values.parameter.livedbhost }}
+    secretName: {{ .Release.Name }}-tls
