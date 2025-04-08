@@ -21,4 +21,8 @@ spec:
           envFrom: {{ range $index, $element := .Values.liveDashboard.deployment.container.envFrom }}
             - secretRef:
                 name: {{ $element.name }}{{ end }}
+          env: {{ range $index, $element := .Values.liveDashboard.deployment.container.env }}
+            - name: {{ $element.name }}
+              value: {{ $element.value }}
+            {{ end }}
       imagePullSecrets: [{name: docker-pull-secret}]

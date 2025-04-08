@@ -8,6 +8,7 @@ liveDashboard:
       ports:
         containerPort: 8000
       envFrom: []
+      env: []
 parameter:
   livedbhost: ~
   livedbnamespace: ~
