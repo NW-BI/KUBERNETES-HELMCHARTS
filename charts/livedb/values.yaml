@@ -16,3 +16,12 @@ middleware:
   names:
     - ipallowlist@kubernetescrd
     - basic-auth@kubernetescrd
+secrets:
+  snowflake_user: ~
+  snowflake_password: ~
+  snowflake_account: ~
+  snowflake_warehouse: ~
+  snowflake_database: ~
+  docker_pull_secret: ~
+  basicAuthFile:
+    htpasswd: ~
