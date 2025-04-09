@@ -25,4 +25,6 @@ spec:
             - name: {{ $element.name }}
               value: "{{ $element.value }}"
             {{ end }}
+            - name: LIVEDASHBOARD_HOST
+              value: "{{ .Values.parameter.livedbhost }}"
       imagePullSecrets: [{name: docker-pull-secret}]
