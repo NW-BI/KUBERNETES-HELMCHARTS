@@ -30,3 +30,6 @@ dependencies:
     version: "1.9.2"
     repository: "https://dagster-io.github.io/helm"
     alias: "dud"
+  - name: "common"
+    version: "2.27.0"
+    repository: "oci://docker.io/bitnamicharts"
