@@ -19,3 +19,7 @@ dagster:
   dagster-user-deployments:
     enabled: true
     enableSubchart: false
+
+parameters:
+  use_oauth: true
+  dagsterHost: dagster

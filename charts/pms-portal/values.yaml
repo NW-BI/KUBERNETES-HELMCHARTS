@@ -1,0 +1,21 @@
+
+app:
+  deployment:
+    container:
+      name: pms-portal
+      image: ghcr.io/nw-bi/pms-portal
+      tag: latest
+      imagePullPolicy: Always
+      ports:
+        containerPort: 8501
+      envFrom: []
+      env: []
+  appName: pms-portal
+parameter:
+  appHost: ~
+  appNamespace: ~
+middleware:
+  names:
+    - ipallowlist@kubernetescrd
+    - basic-auth@kubernetescrd
+
