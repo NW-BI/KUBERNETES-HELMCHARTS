@@ -8,5 +8,5 @@ secrets:
   basicAuthFile:
     htpasswd: kuchen
 parameter:
-  apphost: kuchen
-  appnamespace: kuchen
+  appHost: kuchen
+  appNamespace: kuchen
