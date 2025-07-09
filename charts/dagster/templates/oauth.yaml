@@ -21,10 +21,10 @@ spec:
       content: |-
         provider = "oidc"
         reverse_proxy = true
-        oidc_issuer_url = "https://adfs-mip.it4media.de/adfs"
+        oidc_issuer_url = "https://login.microsoftonline.com/436dc4c0-9574-4f38-a8a7-cf6b84d8a0bd"
         skip_provider_button = true
         email_domains = "*"
-        allowed_groups = ["nw-bi-user"]
+        allowed_groups = ["NW-BI-USER"]
         upstreams = [ "http://{{ include "dagster-service-name" . }}:{{ include "dagster-service-port" . }}" ]
       existingSecret: {{ $secret_name }}
     containerSecurityContext:
