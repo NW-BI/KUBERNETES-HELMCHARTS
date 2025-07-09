@@ -63,4 +63,4 @@ type: Opaque
 stringData:
   client-id: {{ .Values.secrets.oauthClientId }}
   client-secret: {{ .Values.secrets.oauthClientSecret }}
-  cookie-secret: {{ include "common.secrets.passwords.manage" (dict "secret" $secret_name "key" "cookie-secret" "length" 32 "providedValues" (list) "failOnNew" false "context" $) }}
+  cookie-secret: {{ include "common.secrets.passwords.manage" (dict "secret" $secret_name "key" "cookie-secret" "length" 32 "providedValues" (list) "failOnNew" false "skipB64enc" true "context" $) }}
