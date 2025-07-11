@@ -3,7 +3,7 @@
 {{- end -}}
 
 {{- define "dagster-service-port" -}}
-  {{- printf "8080" -}}
+  {{- printf "80" -}}
 {{- end -}}
 
 
