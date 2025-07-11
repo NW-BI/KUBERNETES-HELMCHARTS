@@ -1,4 +1,5 @@
 {{- $secret_name := printf "%s-oauth-proxy" .Release.Name }}
+# SIEHE https://oauth2-proxy.github.io/oauth2-proxy/configuration/overview/
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
@@ -24,6 +25,7 @@ spec:
         oidc_issuer_url = "https://sts.windows.net/436dc4c0-9574-4f38-a8a7-cf6b84d8a0bd/"
         skip_provider_button = true
         email_domains = "*"
+        allowed_groups = ["NW-BI-KUB"]
         upstreams = [ "http://{{ include "dagster-service-name" . }}:{{ include "dagster-service-port" . }}" ]
       existingSecret: {{ $secret_name }}
     containerSecurityContext:
