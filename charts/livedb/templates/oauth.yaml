@@ -1,0 +1,75 @@
+{{- if .Values.parameter.ingress.oauth.enable }}
+# Only enable this if .Values.parameters.ingress.oauth.enable is true
+
+
+
+
+{{- $secret_name := printf "%s-oauth-proxy" .Release.Name }}
+# SIEHE https://oauth2-proxy.github.io/oauth2-proxy/configuration/overview/
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: {{ .Release.Name }}-oauth-proxy
+spec:
+  chart:
+    spec:
+      chart: oauth2-proxy
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+        namespace: flux-system
+      version: 6.x
+  driftDetection:
+    mode: enabled
+  interval: 1h
+  values:
+    configuration:
+      content: |-
+        provider = "oidc"
+        reverse_proxy = true
+        oidc_issuer_url = "https://sts.windows.net/436dc4c0-9574-4f38-a8a7-cf6b84d8a0bd/"
+        skip_provider_button = true
+        email_domains = "*"
+        allowed_groups = {{ .Values.parameter.ingress.oauth.enabled_groups | toJson }}
+        upstreams = [ "http://live-dashboard:8000" ]
+      existingSecret: {{ $secret_name }}
+    containerSecurityContext:
+      enabled: true
+    ingress:
+      enabled: true
+      certManager: true
+      hostname: {{ .Values.parameter.livedbhost }}
+      tls: true
+    pdb:
+      create: true
+      maxUnavailable: ""
+      minAvailable: 1
+    podSecurityContext:
+      enabled: true
+    redis:
+      enabled: false
+    replicaCount: 2
+    resources:
+      limits:
+        cpu: 100m
+        ephemeral-storage: 2Gi
+        memory: 32Mi
+      requests:
+        cpu: 10m
+        ephemeral-storage: 50Mi
+        memory: 16Mi
+---
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ $secret_name }}
+  namespace: {{ .Release.Namespace }}
+type: Opaque
+stringData:
+  client-id: {{ .Values.secrets.oauthClientId }}
+  client-secret: {{ .Values.secrets.oauthClientSecret }}
+  cookie-secret: {{ include "common.secrets.passwords.manage" (dict "secret" $secret_name "key" "cookie-secret" "length" 32 "providedValues" (list) "failOnNew" false "skipB64enc" true "context" $) }}
+
+{{- end }}

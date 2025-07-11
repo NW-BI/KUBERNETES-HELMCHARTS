@@ -12,6 +12,10 @@ liveDashboard:
 parameter:
   livedbhost: ~
   livedbnamespace: ~
+  ingress:
+    oauth:
+      enable: false
+      enabled_groups: []
 middleware:
   names:
     - ipallowlist@kubernetescrd
