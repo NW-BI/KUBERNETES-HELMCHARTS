@@ -24,10 +24,10 @@ version: 1.0.0
 appVersion: "1.17.0"
 dependencies:
   - name: "dagster"
-    version: "1.9.2"
+    version: "1.11.3"
     repository: "https://dagster-io.github.io/helm"
   - name: "dagster-user-deployments"
-    version: "1.9.2"
+    version: "1.11.3"
     repository: "https://dagster-io.github.io/helm"
     alias: "dud"
   - name: "common"
