@@ -1,0 +1,24 @@
+
+app:
+  deployment:
+    container:
+      name: dbt-docs
+      image: ghcr.io/nw-bi/dbt-docs
+      tag: latest
+      imagePullPolicy: Always
+      ports:
+        containerPort: 8080
+      envFrom: []
+      env: []
+  appName: dbt-docs
+parameter:
+  appHost: dbt.bidm.nw.de
+  appNamespace: dagster
+  ingress:
+    oauth:
+      enable: true
+      enabled_groups: ['NW-BI-KUB']
+middleware:
+  names: []
+
+
