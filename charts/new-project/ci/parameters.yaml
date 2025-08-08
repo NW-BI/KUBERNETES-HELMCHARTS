@@ -1,0 +1,12 @@
+secrets:
+  snowflake_user: kuchen
+  snowflake_password: kuchen
+  snowflake_account: kuchen
+  snowflake_warehouse: kuchen
+  snowflake_database: kuchen
+  docker_pull_secret: kuchen
+  basicAuthFile:
+    htpasswd: kuchen
+parameter:
+  appHost: kuchen
+  appNamespace: kuchen
