@@ -2,18 +2,18 @@
 app:
   deployment:
     container:
-      name: some-containername
-      image: ghcr.io/nw-bi/some-image-name
+      name: event-bot
+      image: ghcr.io/nw-bi/event-bot
       tag: latest
       imagePullPolicy: Always
       ports:
-        containerPort: 8080
+        containerPort: 8502
       envFrom: []
       env: []
-  appName: some-app-name
+  appName: event-bot
 parameter:
-  appHost: some-host.bidm.nw.de
-  appNamespace: some-namespace
+  appHost: event-bot.bidm.nw.de
+  appNamespace: event-bot
   ingress:
     oauth:
       enable: true
