@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "mysql.fullname" . }}
+  labels:
+    app: {{ include "mysql.name" . }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ include "mysql.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "mysql.name" . }}
+    spec:
+      containers:
+        - name: mysql
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: {{ .Values.mysqlRootPassword | quote }}
+            - name: MYSQL_DATABASE
+              value: {{ .Values.mysqlDatabase | quote }}
+            - name: MYSQL_USER
+              value: {{ .Values.mysqlUser | quote }}
+            - name: MYSQL_PASSWORD
+              value: {{ .Values.mysqlPassword | quote }}
+          ports:
+            - name: mysql
+              containerPort: 3306
+          volumeMounts:
+            - name: mysql-storage
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-storage
+          persistentVolumeClaim:
+            claimName: {{ include "mysql.fullname" . }}-pvc
