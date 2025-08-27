@@ -32,4 +32,4 @@ dependencies:
     alias: "dud"
   - name: "common"
     version: "2.27.0"
-    repository: "oci://docker.io/bitnamilegacy"
+    repository: "oci://docker.io/bitnamicharts"

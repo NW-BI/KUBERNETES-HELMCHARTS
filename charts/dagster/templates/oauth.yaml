@@ -11,7 +11,7 @@ spec:
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
-        name: bitnami
+        name: bitnamilegacy
         namespace: flux-system
       version: 6.x
   driftDetection:
