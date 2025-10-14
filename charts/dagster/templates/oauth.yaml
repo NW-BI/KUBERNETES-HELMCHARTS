@@ -7,13 +7,13 @@ metadata:
 spec:
   chart:
     spec:
-      chart: oauth2-proxy
-      reconcileStrategy: ChartVersion
+      chart: charts/oauth2-proxy
+      reconcileStrategy: Revision
       sourceRef:
-        kind: HelmRepository
-        name: bitnamilegacy
+        kind: GitRepository
+        name: bitnami-legacy-gitrepo
         namespace: flux-system
-      version: 6.x
+      version: 7.x.x
   driftDetection:
     mode: enabled
   interval: 1h
