@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.app.appName }}-deployment
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.app.appName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.app.appName }}
+    spec:
+      containers:
+        - name: {{ .Values.app.appName }}
+          image: "{{ .Values.app.deployment.container.image }}:{{ .Values.app.deployment.container.tag }}"
+          imagePullPolicy: {{ .Values.app.deployment.container.imagePullPolicy }}
+          ports:
+            - containerPort: {{ .Values.app.deployment.container.ports.containerPort }}
+          envFrom: {{ range $index, $element := .Values.app.deployment.container.envFrom }}
+            - secretRef:
+                name: {{ $element.name }}{{ end }}
+          env: {{ range $index, $element := .Values.app.deployment.container.env }}
+            - name: {{ $element.name }}
+              value: "{{ $element.value }}"
+            {{ end }}
+          volumeMounts:
+            - name: rsa-secret
+              mountPath: /opt/kafka/secrets
+              readOnly: true
+      volumes:
+        - name: rsa-secret
+          secret:
+            secretName: snowflake-private-key
+      imagePullSecrets: [{name: docker-pull-secret}]

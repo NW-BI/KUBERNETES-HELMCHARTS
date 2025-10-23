@@ -1,0 +1,17 @@
+
+app:
+  deployment:
+    container:
+      name: upscore-kafka
+      image: ghcr.io/nw-bi/upscore-kafka
+      tag: latest
+      imagePullPolicy: Always
+      ports:
+        containerPort: 8080
+      envFrom: []
+      env: []
+  appName: upscore-kafka
+parameter:
+  appNamespace: upscore-kafka
+
+

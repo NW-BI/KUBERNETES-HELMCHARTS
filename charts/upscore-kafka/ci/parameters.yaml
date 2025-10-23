@@ -1,0 +1,40 @@
+secrets:
+  snowflake_user: kuchen
+  snowflake_password: kuchen
+  snowflake_account: kuchen
+  snowflake_warehouse: kuchen
+  snowflake_database: kuchen
+  snowflake_p8_key: kuchen
+  kafka_ca_cert: kuchen
+  kafka_service_key: kuchen
+  kafka_service_cert: kuchen
+  kafka_key_store_pw: kuchen
+  snowflake_private_key: kuchen
+  docker_pull_secret: kuchen
+  truststore_pw: kuchen
+parameter:
+  appHost: kuchen
+  appNamespace: kuchen
+app:
+  deployment:
+    container:
+      name: upscore-kafka
+      image: ghcr.io/nw-bi/upscore-kafka
+      tag: latest
+      imagePullPolicy: Always
+      ports:
+        containerPort: 8080
+      envFrom: []
+      env: 
+        - name: SF_SCHEMA
+          value: ONLINE_STG
+        - name: SF_DATABASE
+          value: MAIN_STG
+        - name: SF_USER
+          value: KAFKA_SNOWFLAKE_CONNECTOR
+        - name: SF_ROLE
+          value: KAFKA_CONNECTOR_ROLE
+        - name: SF_URL
+          value: xr45319.west-europe.azure.snowflakecomputing.com
+        - name: KAFKA_SERVER
+          value: upscore-kafka-upscore-237a.aivencloud.com:19295
