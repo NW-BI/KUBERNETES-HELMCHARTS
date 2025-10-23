@@ -4,9 +4,11 @@ secrets:
   snowflake_account: kuchen
   snowflake_warehouse: kuchen
   snowflake_database: kuchen
+  snowflake_p8_key: kuchen
+  kafka_ca_cert: kuchen
+  kafka_service_key: kuchen
+  kafka_service_cert: kuchen
   docker_pull_secret: kuchen
-  basicAuthFile:
-    htpasswd: kuchen
 parameter:
   appHost: kuchen
   appNamespace: kuchen

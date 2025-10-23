@@ -2,23 +2,16 @@
 app:
   deployment:
     container:
-      name: some-containername
-      image: ghcr.io/nw-bi/some-image-name
+      name: upscore-kafka
+      image: ghcr.io/nw-bi/upscore-kafka
       tag: latest
       imagePullPolicy: Always
       ports:
         containerPort: 8080
       envFrom: []
       env: []
-  appName: some-app-name
+  appName: upscore-kafka
 parameter:
-  appHost: some-host.bidm.nw.de
-  appNamespace: some-namespace
-  ingress:
-    oauth:
-      enable: true
-      enabled_groups: ['NW-BI-KUB']
-middleware:
-  names: []
+  appNamespace: upscore-kafka
 
 
