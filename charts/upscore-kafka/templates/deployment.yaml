@@ -27,13 +27,13 @@ spec:
               value: "{{ $element.value }}"
             {{ end }}
           volumeMounts:
-            - name: rsa-secret
+            - name: secret-file-volume
               mountPath: /opt/kafka/secrets
               readOnly: true
           command: ["/bin/sh"]
           args: ["-c", "sleep infinity"]
       volumes:
-        - name: rsa-secret
+        - name: secret-file-volume
           secret:
-            secretName: snowflake-private-key
+            secretName: secret-files
       imagePullSecrets: [{name: docker-pull-secret}]
