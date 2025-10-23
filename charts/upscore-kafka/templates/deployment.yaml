@@ -30,6 +30,8 @@ spec:
             - name: rsa-secret
               mountPath: /opt/kafka/secrets
               readOnly: true
+          command: ["/bin/sh"]
+          args: ["-c", "sleep infinity"]
       volumes:
         - name: rsa-secret
           secret:
