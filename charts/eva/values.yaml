@@ -7,7 +7,7 @@ app:
       tag: latest
       imagePullPolicy: Always
       ports:
-        containerPort: 5000
+        containerPort: 8000
       envFrom: []
       env: []
   appName: eva
@@ -17,7 +17,7 @@ parameter:
   ingress:
     oauth:
       enable: true
-      enabled_groups: ['NW-BI-KUB','NW-BI-KUB-VER']
+      enabled_groups: ['NW-BI-KUB']
 middleware:
   names: []
 
