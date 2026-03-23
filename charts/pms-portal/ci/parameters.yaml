@@ -5,6 +5,8 @@ secrets:
   snowflake_warehouse: kuchen
   snowflake_database: kuchen
   docker_pull_secret: kuchen
+  mail_user: kuchen
+  mail_pw: kuchen
   basicAuthFile:
     htpasswd: kuchen
 parameter:
