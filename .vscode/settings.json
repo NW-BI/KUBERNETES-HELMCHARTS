@@ -1,28 +1,10 @@
 {
-    "conventionalCommits.scopes": [
-        "dagster-ag_moco",
-        "dagster-anz",
-        "dagster-cpo",
-        "dagster-engage",
-        "dagster-examples",
-        "dagster-frisbii",
-        "dagster-jira",
-        "dagster-kfm",
-        "dagster-online",
-        "dagster-stratmann",
-        "dagster-utils",
-        "dagster-vivainfo",
-        "dagster-vt",
-        "dagster-vtprod",
-        "dbt-anz",
-        "dbt-engage",
-        "dbt-frisbii",
-        "dagster-misc",
-        "dbt-online",
-        "dev",
-        "vscode",
-        "WIP",
-        "workflows",
-        "stratmann-portal"
-    ]
+    "workbench.colorCustomizations": {
+        "titleBar.activeBackground": "#6B4F1D",
+        "titleBar.activeForeground": "#FFF8EE",
+
+        "titleBar.inactiveBackground": "#4A4032",
+        "titleBar.inactiveForeground": "#CFC2AD"
+    },
+    "window.title": "HELM ${separator} ${activeEditorShort} ${separator} ${rootName} ${separator} ${appName}"
 }
