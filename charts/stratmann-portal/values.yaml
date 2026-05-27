@@ -17,7 +17,7 @@ parameter:
   ingress:
     oauth:
       enable: true
-      enabled_groups: ['ROL-SEC-STK-STREAMLIT']
+      enabled_groups: ['NW-BI-KUB']
 middleware:
   names: []
 
