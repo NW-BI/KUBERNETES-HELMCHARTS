@@ -1,0 +1,24 @@
+
+app:
+  deployment:
+    container:
+      name: stratmann-portal
+      image: ghcr.io/nw-bi/stratmann-portal
+      tag: latest
+      imagePullPolicy: Always
+      ports:
+        containerPort: 8505
+      envFrom: []
+      env: []
+  appName: stratmann-portal
+parameter:
+  appHost: stratmann-datenmanagement.bidm.nw.de
+  appNamespace: stratmann-portal
+  ingress:
+    oauth:
+      enable: true
+      enabled_groups: ['ROL-SEC-STK-STREAMLIT']
+middleware:
+  names: []
+
+

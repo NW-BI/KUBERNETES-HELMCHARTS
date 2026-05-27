@@ -1,0 +1,28 @@
+{
+    "conventionalCommits.scopes": [
+        "dagster-ag_moco",
+        "dagster-anz",
+        "dagster-cpo",
+        "dagster-engage",
+        "dagster-examples",
+        "dagster-frisbii",
+        "dagster-jira",
+        "dagster-kfm",
+        "dagster-online",
+        "dagster-stratmann",
+        "dagster-utils",
+        "dagster-vivainfo",
+        "dagster-vt",
+        "dagster-vtprod",
+        "dbt-anz",
+        "dbt-engage",
+        "dbt-frisbii",
+        "dagster-misc",
+        "dbt-online",
+        "dev",
+        "vscode",
+        "WIP",
+        "workflows",
+        "stratmann-portal"
+    ]
+}
