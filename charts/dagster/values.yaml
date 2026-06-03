@@ -13,6 +13,10 @@ dagster:
       enabled: false
     sensors:
       numWorkers: 3
+    securityContext:
+      sysctls:
+        - name: net.ipv4.tcp_keepalive_time
+          value: "300"
 
     schedules:
       numWorkers: 6
