@@ -16,7 +16,7 @@ dagster:
     securityContext:
       sysctls:
         - name: net.ipv4.tcp_keepalive_time
-          value: "1200"
+          value: "1205"
 
     schedules:
       numWorkers: 6
