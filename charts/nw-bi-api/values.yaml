@@ -1,0 +1,24 @@
+
+app:
+  deployment:
+    container:
+      name: nw-bi-api
+      image: ghcr.io/nw-bi/nw-bi-api
+      tag: latest
+      imagePullPolicy: Always
+      ports:
+        containerPort: 8510
+      envFrom: []
+      env: []
+  appName: nw-bi-api
+parameter:
+  appHost: api.bidm.nw.de
+  appNamespace: nw-bi-api
+  ingress:
+    oauth:
+      enable: false
+      enabled_groups: []
+middleware:
+  names: []
+
+
