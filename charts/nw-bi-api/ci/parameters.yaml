@@ -5,6 +5,7 @@ secrets:
   snowflake_warehouse: kuchen
   snowflake_database: kuchen
   docker_pull_secret: kuchen
+  fernet_token_secret: kuchen
 parameter:
   appHost: kuchen
   appNamespace: kuchen
