@@ -6,6 +6,7 @@ secrets:
   snowflake_database: kuchen
   docker_pull_secret: kuchen
   fernet_token_secret: kuchen
+  open_ai_key: kuchen
 parameter:
   appHost: kuchen
   appNamespace: kuchen
