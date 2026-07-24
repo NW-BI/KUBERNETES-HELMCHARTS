@@ -6,6 +6,8 @@ secrets:
   snowflake_database: kuchen
   docker_pull_secret: kuchen
   open_ai_key: kuchen
+  x_vertrieb_user: kuchen
+  x_vertrieb_password: kuchen
 parameter:
   appHost: kuchen
   appNamespace: kuchen
