@@ -16,7 +16,7 @@ parameter:
   appNamespace: bi-services
   ingress:
     oauth:
-      enable: false
+      enable: true
       enabled_groups: ["NW-BI-KUB"]
 middleware:
   names: []
