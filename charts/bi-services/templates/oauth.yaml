@@ -29,6 +29,9 @@ spec:
         provider = "oidc"
         reverse_proxy = true
         set_xauthrequest = true
+        pass_access_token = true
+        pass_user_headers = true
+        set_authorization_header = true
         oidc_issuer_url = "https://sts.windows.net/436dc4c0-9574-4f38-a8a7-cf6b84d8a0bd/"
         skip_provider_button = true
         email_domains = "*"
