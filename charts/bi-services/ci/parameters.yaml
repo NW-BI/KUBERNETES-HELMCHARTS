@@ -8,6 +8,8 @@ secrets:
   open_ai_key: kuchen
   x_vertrieb_user: kuchen
   x_vertrieb_password: kuchen
+  sso_api_password: kuchen
+  sso_api_user: kuchen
 parameter:
   appHost: kuchen
   appNamespace: kuchen
