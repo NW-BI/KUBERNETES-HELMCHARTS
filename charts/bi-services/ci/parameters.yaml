@@ -10,6 +10,8 @@ secrets:
   x_vertrieb_password: kuchen
   sso_api_password: kuchen
   sso_api_user: kuchen
+  mail_client_password: kuchen
+  mail_client_user: kuchen
 parameter:
   appHost: kuchen
   appNamespace: kuchen
