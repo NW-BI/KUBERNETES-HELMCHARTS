@@ -17,7 +17,7 @@ parameter:
   ingress:
     oauth:
       enable: true
-      enabled_groups: ["NW-BI-KUB","NW-BI-KUB-VER"]
+      enabled_groups: ["SSO-KUB-ALL"]
 middleware:
   names: []
 
