@@ -7,6 +7,8 @@ secrets:
   docker_pull_secret: kuchen
   fernet_token_secret: kuchen
   open_ai_key: kuchen
+  blob_account_key_prod: kuchen
+  blob_account_key_dev: kuchen
 parameter:
   appHost: kuchen
   appNamespace: kuchen
