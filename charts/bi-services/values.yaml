@@ -17,7 +17,7 @@ parameter:
   ingress:
     oauth:
       enable: true
-      enabled_groups: ["NW-BI-KUB", "ROL-NW-WLAN","ROL-MIP-Guests"]
+      enabled_groups: ["ROL-OMS-BI-Kubernetes","ROL-STK-BI-Kubernetes","ROL-HK-BI-Kubernetes","ROL-RGO-BI-Kubernetes","ROL-NWMS-BI-Kubernetes","ROL-NWL-BI-Kubernetes","ROL-OWLD-BI-Kubernetes","ROL-NW-BI-Kubernetes"]
 middleware:
   names: []
 
