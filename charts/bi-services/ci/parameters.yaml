@@ -12,6 +12,8 @@ secrets:
   sso_api_user: kuchen
   mail_client_password: kuchen
   mail_client_user: kuchen
+  blob_account_key_prod: kuchen
+  blob_account_key_dev: kuchen
 parameter:
   appHost: kuchen
   appNamespace: kuchen
