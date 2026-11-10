@@ -1,3 +1,23 @@
+
+app:
+  deployment:
+    container:
+      name: bi-services
+      image: ghcr.io/nw-bi/bi-services
+      tag: latest
+      imagePullPolicy: Always
+      ports:
+        containerPort: 8511
+      envFrom: []
+      env: []
+  appName: bi-services
+parameter:
+  appHost: services.bidm.nw.de
+  appNamespace: bi-services
+  ingress:
+    oauth:
+      enable: true
+      enabled_groups: ["NW-BI-KUB", "ROL-NW-WLAN", "ROL-MIP-Guests", "ROL-OMS-BI-Kubernetes", "ROL-NW-BI-Kubernetes", "ROL-OWLD-BI-Kubernetes"]
 middleware:
   names: []
 
