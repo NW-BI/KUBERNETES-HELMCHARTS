@@ -17,6 +17,8 @@ parameter:
   ingress:
     oauth:
       enable: true
+      certManager: true
+      tls: true
       enabled_groups: ["NW-BI-KUB", "ROL-NW-WLAN", "ROL-MIP-Guests", "ROL-OMS-BI-Kubernetes", "ROL-NW-BI-Kubernetes", "ROL-OWLD-BI-Kubernetes"]
 middleware:
   names: []

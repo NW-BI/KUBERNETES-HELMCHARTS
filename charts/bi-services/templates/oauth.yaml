@@ -47,9 +47,9 @@ spec:
       enabled: true
     ingress:
       enabled: true
-      certManager: true
+      certManager: {{ .Values.parameter.ingress.oauth.certManager }}
       hostname: {{ .Values.parameter.appHost }}
-      tls: true
+      tls: {{ .Values.parameter.ingress.oauth.tls }}
     pdb:
       create: true
       maxUnavailable: ""
