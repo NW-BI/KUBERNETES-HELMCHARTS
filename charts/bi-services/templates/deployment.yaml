@@ -1,3 +1,41 @@
+{{- if and .Values.app.deployments (gt (len .Values.app.deployments) 0) }}
+{{- range .Values.app.deployments }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .name }}-deployment
+  namespace: {{ $.Release.Namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .name }}
+    spec:
+      containers:
+        - name: {{ .container.name }}
+          image: "{{ .container.image }}:{{ .container.tag }}"
+          imagePullPolicy: {{ .container.imagePullPolicy }}
+          ports:
+            - containerPort: {{ .container.ports.containerPort }}
+          envFrom:
+            {{- range .container.envFrom }}
+            - secretRef:
+                name: {{ .name }}
+            {{- end }}
+          env:
+            {{- range .container.env }}
+            - name: {{ .name }}
+              value: "{{ .value }}"
+            {{- end }}
+      imagePullSecrets:
+        - name: docker-pull-secret
+{{- end }}
+{{- else }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -14,16 +52,21 @@ spec:
         app: {{ .Values.app.appName }}
     spec:
       containers:
-        - name: {{ .Values.app.appName }}
+        - name: {{ .Values.app.deployment.container.name }}
           image: "{{ .Values.app.deployment.container.image }}:{{ .Values.app.deployment.container.tag }}"
           imagePullPolicy: {{ .Values.app.deployment.container.imagePullPolicy }}
           ports:
             - containerPort: {{ .Values.app.deployment.container.ports.containerPort }}
-          envFrom: {{ range $index, $element := .Values.app.deployment.container.envFrom }}
+          envFrom:
+            {{- range .Values.app.deployment.container.envFrom }}
             - secretRef:
-                name: {{ $element.name }}{{ end }}
-          env: {{ range $index, $element := .Values.app.deployment.container.env }}
-            - name: {{ $element.name }}
-              value: "{{ $element.value }}"
-            {{ end }}
-      imagePullSecrets: [{name: docker-pull-secret}]
+                name: {{ .name }}
+            {{- end }}
+          env:
+            {{- range .Values.app.deployment.container.env }}
+            - name: {{ .name }}
+              value: "{{ .value }}"
+            {{- end }}
+      imagePullSecrets:
+        - name: docker-pull-secret
+{{- end }}

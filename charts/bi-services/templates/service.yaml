@@ -1,10 +1,28 @@
+{{- if and .Values.app.deployments (gt (len .Values.app.deployments) 0) }}
+{{- range .Values.app.deployments }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .name }}-service
+  namespace: {{ $.Release.Namespace }}
+spec:
+  selector:
+    app: {{ .name }}
+  ports:
+    - port: {{ .container.ports.containerPort }}
+      targetPort: {{ .container.ports.containerPort }}
+{{- end }}
+{{- else }}
 apiVersion: v1
 kind: Service
 metadata:
   name: {{ .Values.app.appName }}-service
+  namespace: {{ .Release.Namespace }}
 spec:
-  ports:
-  - port: {{ .Values.app.deployment.container.ports.containerPort }}
-    targetPort: {{ .Values.app.deployment.container.ports.containerPort }}
   selector:
     app: {{ .Values.app.appName }}
+  ports:
+    - port: {{ .Values.app.deployment.container.ports.containerPort }}
+      targetPort: {{ .Values.app.deployment.container.ports.containerPort }}
+{{- end }}

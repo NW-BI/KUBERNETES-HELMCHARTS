@@ -1,4 +1,33 @@
 {{- if not .Values.parameter.ingress.oauth.enable }}
+{{- if and .Values.app.deployments (gt (len .Values.app.deployments) 0) }}
+{{- range .Values.app.deployments }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ $.Release.Name }}-{{ .name }}-ws
+  namespace: {{ $.Release.Namespace }}
+  annotations:
+    kubernetes.io/tls-acme: "true"
+    traefik.ingress.kubernetes.io/router.middlewares: {{ range $index, $element := $.Values.middleware.names }}{{ if $index }},{{ end }}{{ $.Release.Name }}-{{ $element }}{{ end }}
+spec:
+  rules:
+  - host: {{ $.Values.parameter.appHost }}
+    http:
+      paths:
+      - path: {{ .route }}
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ .name }}-service
+            port:
+              number: {{ .container.ports.containerPort }}
+  tls:
+  - hosts:
+    - {{ $.Values.parameter.appHost }}
+    secretName: {{ $.Release.Name }}-tls
+{{- end }}
+{{- else }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -23,4 +52,5 @@ spec:
   - hosts:
     - {{ .Values.parameter.appHost }}
     secretName: {{ .Release.Name }}-tls
+{{- end }}
 {{- end }}

@@ -1,10 +1,15 @@
 {{- if .Values.parameter.ingress.oauth.enable }}
 # Only enable this if .Values.parameters.ingress.oauth.enable is true
 
-
-
-
 {{- $secret_name := printf "%s-oauth-proxy" .Release.Name }}
+{{- $upstreams := list }}
+{{- if and .Values.app.deployments (gt (len .Values.app.deployments) 0) }}
+{{- range .Values.app.deployments }}
+{{- $upstreams = append $upstreams (printf "http://%s-service:%v" .name .container.ports.containerPort) }}
+{{- end }}
+{{- else }}
+{{- $upstreams = append $upstreams (printf "http://%s-service:%v" .Values.app.appName .Values.app.deployment.container.ports.containerPort) }}
+{{- end }}
 # SIEHE https://oauth2-proxy.github.io/oauth2-proxy/configuration/overview/
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -36,7 +41,7 @@ spec:
         skip_provider_button = true
         email_domains = "*"
         allowed_groups = {{ .Values.parameter.ingress.oauth.enabled_groups | toJson }}
-        upstreams = [ "http://{{ .Values.app.appName }}-service:{{ .Values.app.deployment.container.ports.containerPort }}" ]
+        upstreams = {{ $upstreams | toJson }}
       existingSecret: {{ $secret_name }}
     containerSecurityContext:
       enabled: true
