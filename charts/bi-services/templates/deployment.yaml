@@ -22,16 +22,20 @@ spec:
           imagePullPolicy: {{ .container.imagePullPolicy }}
           ports:
             - containerPort: {{ .container.ports.containerPort }}
+          {{- if and .container.envFrom (gt (len .container.envFrom) 0) }}
           envFrom:
             {{- range .container.envFrom }}
             - secretRef:
                 name: {{ .name }}
             {{- end }}
+          {{- end }}
+          {{- if and .container.env (gt (len .container.env) 0) }}
           env:
             {{- range .container.env }}
             - name: {{ .name }}
               value: "{{ .value }}"
             {{- end }}
+          {{- end }}
       imagePullSecrets:
         - name: docker-pull-secret
 {{- end }}
@@ -57,16 +61,20 @@ spec:
           imagePullPolicy: {{ .Values.app.deployment.container.imagePullPolicy }}
           ports:
             - containerPort: {{ .Values.app.deployment.container.ports.containerPort }}
+          {{- if and .Values.app.deployment.container.envFrom (gt (len .Values.app.deployment.container.envFrom) 0) }}
           envFrom:
             {{- range .Values.app.deployment.container.envFrom }}
             - secretRef:
                 name: {{ .name }}
             {{- end }}
+          {{- end }}
+          {{- if and .Values.app.deployment.container.env (gt (len .Values.app.deployment.container.env) 0) }}
           env:
             {{- range .Values.app.deployment.container.env }}
             - name: {{ .name }}
               value: "{{ .value }}"
             {{- end }}
+          {{- end }}
       imagePullSecrets:
         - name: docker-pull-secret
 {{- end }}

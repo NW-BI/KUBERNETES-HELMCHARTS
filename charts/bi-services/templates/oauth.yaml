@@ -5,7 +5,14 @@
 {{- $upstreams := list }}
 {{- if and .Values.app.deployments (gt (len .Values.app.deployments) 0) }}
 {{- range .Values.app.deployments }}
-{{- $upstreams = append $upstreams (printf "http://%s-service:%v" .name .container.ports.containerPort) }}
+  {{- $route := .route | default "/" }}
+  {{- if eq $route "/" }}
+    {{- $upstreams = append $upstreams (printf "http://%s-service:%v/" .name .container.ports.containerPort) }}
+  {{- else }}
+    {{- $cleanRoute := $route | trimSuffix "/" }}
+    {{- $upstreams = append $upstreams (printf "http://%s-service:%v%s" .name .container.ports.containerPort $cleanRoute) }}
+    {{- $upstreams = append $upstreams (printf "http://%s-service:%v%s/" .name .container.ports.containerPort $cleanRoute) }}
+  {{- end }}
 {{- end }}
 {{- else }}
 {{- $upstreams = append $upstreams (printf "http://%s-service:%v" .Values.app.appName .Values.app.deployment.container.ports.containerPort) }}
